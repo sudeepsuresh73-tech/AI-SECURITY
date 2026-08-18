@@ -34,17 +34,24 @@ Automated adversarial testing framework that stress-tests LLMs against safety at
 ## 🗂️ Folder Structure
 
 ```
-project1-jailbreak-eval/
-├── prompts/
-│   └── dataset.csv          # 10 adversarial prompts across 5 categories
-├── runner/
-│   └── test_runner.py       # Sends prompts to LLMs and saves responses
-├── evaluators/
-│   └── eval_script.py       # Grades responses PASS or FAIL
-├── reports/
-│   └── dashboard.py         # Streamlit interactive dashboard
-├── screenshots/             # Portfolio evidence images
-└── README.md
+AI-SECURITY/
+├── README.md
+└── project1-jailbreak-eval/
+    ├── README.md
+    ├── requirements.txt
+    ├── evaluators/
+    │   └── eval_script.py
+    ├── prompts/
+    │   └── dataset.csv
+    ├── reports/
+    │   └── dashboard.py
+    ├── runner/
+    │   └── test_runner.py
+    └── screenshots/
+        ├── dashboard.png
+        ├── chart.png
+        ├── audit.png
+        └── terminal.png
 ```
 
 ---
@@ -113,6 +120,25 @@ Open http://localhost:8501 in your browser.
 
 ---
 
+## 📁 Key Files Explained
+
+**evaluators/eval_script.py**
+Reads the latest raw CSV and grades each response PASS or FAIL using keyword matching. Saves a graded CSV to reports folder.
+
+**prompts/dataset.csv**
+The test dataset. Each row has an adversarial prompt, its attack category, and expected behavior.
+
+**reports/dashboard.py**
+Streamlit app that reads the latest graded CSV and displays overall metrics, category failure rate charts, full audit trace table, and model comparison summary.
+
+**runner/test_runner.py**
+Loads the dataset, sends each prompt to GPT-4o-Mini and Claude-3.5-Sonnet, saves raw responses to a timestamped CSV in the reports folder.
+
+**requirements.txt**
+All Python dependencies needed to run the project.
+
+---
+
 ## 🧠 What I Learned
 
 - Designing end-to-end LLM safety evaluation pipelines
@@ -136,22 +162,6 @@ Open http://localhost:8501 in your browser.
 | Anthropic API | Claude-3.5-Sonnet responses |
 | tqdm | Progress bars |
 | python-dotenv | API key management |
-
----
-
-## 📁 Key Files Explained
-
-**prompts/dataset.csv**
-The test dataset. Each row has an adversarial prompt, its category, and expected behavior.
-
-**runner/test_runner.py**
-Loads the dataset, sends each prompt to both LLMs, saves raw responses to a timestamped CSV in the reports folder.
-
-**evaluators/eval_script.py**
-Reads the latest raw CSV, grades each response PASS or FAIL using keyword matching, saves a graded CSV.
-
-**reports/dashboard.py**
-Streamlit app that reads the latest graded CSV and displays overall metrics, category failure rate charts, full audit trace table, and model comparison summary.
 
 ---
 
