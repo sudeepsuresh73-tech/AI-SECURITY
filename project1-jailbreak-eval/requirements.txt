@@ -1,0 +1,8 @@
+openai
+anthropic
+pandas
+plotly
+streamlit
+httpx
+python-dotenv
+tqdm
